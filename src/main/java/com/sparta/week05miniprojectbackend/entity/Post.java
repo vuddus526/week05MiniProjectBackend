@@ -18,9 +18,6 @@ public class Post extends Timestamped {
     @Column(name = "post_id", nullable = false)
     private Long id;
 
-    @Column(name = "title", nullable = false)
-    private String title;
-
     @Column(name = "content", nullable = false)
     private String content;
 
@@ -42,7 +39,6 @@ public class Post extends Timestamped {
     private User user;
 
     public Post(PostRequestDto postRequestDto, User user) {
-        this.title = postRequestDto.getTitle();
         this.content = postRequestDto.getContent();
         this.image = postRequestDto.getImage();
         this.exercise = postRequestDto.getExercise();
@@ -52,7 +48,6 @@ public class Post extends Timestamped {
     }
 
     public void update(PostRequestDto postRequestDto) {
-        this.title = postRequestDto.getTitle();
         this.content = postRequestDto.getContent();
         this.image = postRequestDto.getImage();
         this.exercise = postRequestDto.getExercise();

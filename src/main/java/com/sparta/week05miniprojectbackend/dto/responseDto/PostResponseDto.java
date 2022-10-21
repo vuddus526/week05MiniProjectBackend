@@ -10,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 public class PostResponseDto {
     private Long id;
-    private String title;
     private String content;
     private String image;
     private String exercise;

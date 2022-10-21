@@ -135,7 +135,6 @@ public class PostService {
                 PostResponseDto.builder()
                         .id(post.getId())
                         //.nickName(post.getUser().getNickName())
-                        .title(post.getTitle())
                         .content(post.getContent())
                         .exercise(post.getExercise())
                         .time(post.getTime())
