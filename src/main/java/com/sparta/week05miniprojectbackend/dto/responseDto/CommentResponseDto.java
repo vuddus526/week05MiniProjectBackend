@@ -1,5 +1,6 @@
 package com.sparta.week05miniprojectbackend.dto.responseDto;
 
+import com.sparta.week05miniprojectbackend.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,4 +17,17 @@ public class CommentResponseDto {
     private String comment;
     private String nickName;
     private LocalDateTime createAt;
+
+    //Post타입에서 DTO타입으로 변환
+    public CommentResponseDto(Comment comment){
+
+        this.id = comment.getId();
+
+        this.comment = comment.getContent();
+
+        this.nickName = comment.getMember().getName();
+
+        this.createAt = comment.getCreateAt();
+
+    }
 }
