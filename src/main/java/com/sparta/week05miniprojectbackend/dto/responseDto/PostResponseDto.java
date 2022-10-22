@@ -17,4 +17,5 @@ public class PostResponseDto {
     private String date;
 
     private List<CommentResponseDto> commentResponseDtoList;
+    private List<ImgResponseDto> imgResponseDtoList;
 }

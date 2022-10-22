@@ -1,5 +1,6 @@
 package com.sparta.week05miniprojectbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.week05miniprojectbackend.dto.requestDto.PostRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +34,7 @@ public class Post extends Timestamped {
     @Column(name = "date", nullable = false)
     private String date;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)

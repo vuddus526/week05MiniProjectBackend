@@ -6,15 +6,21 @@ import com.sparta.week05miniprojectbackend.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-@RestController
-@RequestMapping("/api")
-@RequiredArgsConstructor
-public class PostController {
+import java.io.IOException;
+import java.util.List;
 
+//@RestController
+//@RequestMapping("/api")
+//@RequiredArgsConstructor
+//public class PostController {
+//
 //    // 게시글 작성
 //    @PostMapping("/auth/posts")
-//    public ResponseDto<?> createPost(@RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
+//    public ResponseDto<?> createPost(@RequestPart(required = false,value = "file") List<MultipartFile> multipartFile,
+//                                     @RequestPart(value = "postRequestDto") PostRequestDto postRequestDto,
+//                                     @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) throws IOException {
 //        return PostService.createPost(postRequestDto, userDetailsImpl.getUser().getUserId);
 //    }
 //
@@ -40,4 +46,4 @@ public class PostController {
 //    public ResponseDto<?> getDetailPost(@PathVariable("postId") Long id) {
 //        return PostService.getDetailPost(id);
 //    }
-}
+//}
