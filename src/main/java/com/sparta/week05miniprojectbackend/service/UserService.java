@@ -53,7 +53,7 @@ public class UserService {
                 () -> new RuntimeException("Not found Account")
         );
         // password 일치 여부 확인 -> password 인코딩
-        if (passwordEncoder.matches(loginRequestDto.getPassword(), user.getPassword())) {
+        if (passwordEncoder.matches(passwordEncoder.encode(loginRequestDto.getPassword()), user.getPassword())) {
             throw new RuntimeException("Not matches Password");
         }
         // userId 값을 포함한 토큰 생성 후 tokenDto 에 저장
