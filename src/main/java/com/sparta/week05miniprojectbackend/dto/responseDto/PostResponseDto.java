@@ -11,7 +11,7 @@ import java.util.List;
 public class PostResponseDto {
     private Long id;
     private String content;
-    private String image;
+//    private String image;
     private String exercise;
     private String time;
     private String date;

@@ -17,6 +17,4 @@ public class CommentRequestDto {
 
         return new Comment(user, post, this.content);
     }
-
-
 }

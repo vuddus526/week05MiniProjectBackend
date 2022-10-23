@@ -17,6 +17,7 @@ import com.sparta.week05miniprojectbackend.entity.User;
 import com.sparta.week05miniprojectbackend.repository.CommentRepository;
 import com.sparta.week05miniprojectbackend.repository.ImgRepository;
 import com.sparta.week05miniprojectbackend.repository.PostRepository;
+import com.sparta.week05miniprojectbackend.repository.UserRepository;
 import com.sparta.week05miniprojectbackend.s3.CommonUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,6 +37,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
     private final ImgRepository imgRepository;
+    private final UserRepository userRepository;
 
     private final AmazonS3Client amazonS3Client;
 
@@ -44,7 +46,7 @@ public class PostService {
 
     // userId를 이용해서 User 있는지 확인 후 User 객체 만들기
     private User getUser(String userId) {
-        User user = postRepository.findByUserId(userId)
+        User user = userRepository.findByUserId(userId)
                 .orElseThrow(IllegalAccessError::new);
         return user;
     }
@@ -56,7 +58,7 @@ public class PostService {
         return post;
     }
 
-    // postId를 이용해서 해당 글의 댓글 찾기
+//     postId를 이용해서 해당 글의 댓글 찾기
 //    private List<CommentResponseDto> getCommentList(Long postId) {
 //        // postId와 동일한 코멘트 전부 불러오기
 //        List<Comment> commentList = commentRepository.findAllByPostId(postId);
@@ -191,7 +193,7 @@ public class PostService {
                 PostResponseDto.builder()
                         .id(post.getId())
                         //.nickName(post.getUser().getNickName())
-                        .image(post.getImage())
+//                        .image(post.getImage())
                         .content(post.getContent())
                         .exercise(post.getExercise())
                         .time(post.getTime())

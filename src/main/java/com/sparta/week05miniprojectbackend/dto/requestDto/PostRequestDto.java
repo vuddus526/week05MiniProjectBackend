@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PostRequestDto {
     private final String content;
-    private final String image;
+//    private final String image;
     private final String exercise;
     private final String time;
     private final String date;

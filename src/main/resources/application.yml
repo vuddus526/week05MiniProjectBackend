@@ -37,10 +37,10 @@ jwt:
 cloud:
   aws:
     credentials:
-      accessKey: #acess값
-      secretKey: #secret값
+      accessKey: #
+      secretKey: #
     s3:
-      bucket: #bucket이름
+      bucket: #
     region:
       static: ap-northeast-2
     stack:
