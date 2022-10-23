@@ -35,7 +35,6 @@ public class UserController {
         return userService.login(loginRequestDto, response);
     }
 
-
     @GetMapping("/issue/token")
     public UserResponseDto issuedToken(@AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response){
         response.addHeader(JwtUtil.ACCESS_TOKEN, jwtUtil.createToken(userDetails.getUser().getUserId(), "Access"));
