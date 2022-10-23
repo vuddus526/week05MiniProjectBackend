@@ -2,7 +2,6 @@ package com.sparta.week05miniprojectbackend.controller;
 
 import com.sparta.week05miniprojectbackend.dto.requestDto.PostRequestDto;
 import com.sparta.week05miniprojectbackend.dto.responseDto.ResponseDto;
-import com.sparta.week05miniprojectbackend.security.user.UserDetailsImpl;
 import com.sparta.week05miniprojectbackend.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
