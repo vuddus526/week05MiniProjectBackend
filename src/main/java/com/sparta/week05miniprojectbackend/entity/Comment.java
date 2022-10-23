@@ -1,12 +1,11 @@
 package com.sparta.week05miniprojectbackend.entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.lang.reflect.Member;
+
 
 @NoArgsConstructor
 @Entity
@@ -36,10 +35,10 @@ public class Comment extends Timestamped{
         this.content = content;
     }
 
-    public void update(String content){
-
-            this.content = content;
-        }
+//    public void update(String content){
+//
+//            this.content = content;
+//        }
 
         public boolean checkOwnerByMemberId(Long userId){
 
