@@ -15,7 +15,7 @@ public class CommentController {
 //    private CommentService commentService;
 //
 //    @PostMapping //댓글 작성
-//    public ResponseDto<?> create(@PathVariable("post_id") Long postId,
+//    public ResponseDto<?> create(@PathVariable("postId") Long postId,
 //                                 @RequestBody CommentRequestDto dto
 //                                 @AuthenticationPrincipal UserDetailsImpl userDetailsImpl){
 //
@@ -23,8 +23,8 @@ public class CommentController {
 //    }
 //
 //    @DeleteMapping("/{commentsId}") //댓글삭제
-//    public ResponseDto<?> delete(@PathVariable("post_id") Long postId,
-//                                 @PathVariable("comment_id") Long commentsId){
+//    public ResponseDto<?> delete(@PathVariable("postId") Long postId,
+//                                 @PathVariable("commentId") Long commentsId){
 //
 //        return new ResponseDto<>(true,"댓글삭제완료!",null);
 //    }
