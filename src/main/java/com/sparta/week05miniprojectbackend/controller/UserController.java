@@ -40,7 +40,6 @@ public class UserController {
         response.addHeader(JwtUtil.ACCESS_TOKEN, jwtUtil.createToken(userDetails.getUser().getUserId(), "Access"));
         return new UserResponseDto("Success IssuedToken", HttpStatus.OK.value());
     }
-
 }
 
 

@@ -45,7 +45,6 @@ public class UserService {
     }
 
     // 로그인
-    // Optional 못 받는 이유?????????????????????
     @Transactional
     public UserResponseDto login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
         // userId 로 user 정보 호출

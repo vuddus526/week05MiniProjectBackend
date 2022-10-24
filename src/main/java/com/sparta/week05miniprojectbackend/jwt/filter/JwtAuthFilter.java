@@ -29,7 +29,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String accessToken = jwtUtil.getHeaderToken(request, "Access");
         String refreshToken = jwtUtil.getHeaderToken(request, "Refresh");
 
-        // accessToken 없는 경우 ->
         if(accessToken != null) {
             if(!jwtUtil.tokenValidation(accessToken)){
                 jwtExceptionHandler(response, "AccessToken Expired", HttpStatus.BAD_REQUEST);
@@ -43,12 +42,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
             setAuthentication(jwtUtil.getUserIdFromToken(refreshToken));
         }
-
         filterChain.doFilter(request,response);
     }
 
-    public void setAuthentication(String email) {
-        Authentication authentication = jwtUtil.createAuthentication(email);
+    public void setAuthentication(String userId) {
+        Authentication authentication = jwtUtil.createAuthentication(userId);
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
@@ -62,5 +60,4 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             log.error(e.getMessage());
         }
     }
-
 }

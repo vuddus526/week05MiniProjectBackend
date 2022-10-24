@@ -15,8 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.persistence.Entity;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -44,7 +42,6 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/api/auth/**").authenticated()
                 .anyRequest().permitAll()
-//                .anyRequest().authenticated()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

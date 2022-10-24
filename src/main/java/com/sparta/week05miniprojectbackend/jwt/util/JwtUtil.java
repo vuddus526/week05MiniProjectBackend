@@ -32,9 +32,9 @@ public class JwtUtil {
     private final RefreshTokenRepository refreshTokenRepository;
 
     // 지속 시간 컨펌 핋요!!
-    // ACCESS_TIME 10초
+    // ACCESS_TIME 10초*100
     private static final long ACCESS_TIME = 1000 * 1000L;
-    // REFRESH_TIME 60초
+    // REFRESH_TIME 60초*100
     private static final long REFRESH_TIME = 6000 * 1000L;
     public static final String ACCESS_TOKEN = "Access_Token";
     public static final String REFRESH_TOKEN = "Refresh_Token";
@@ -99,8 +99,8 @@ public class JwtUtil {
     }
 
     // 인증 객체 생성
-    public Authentication createAuthentication(String email) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+    public Authentication createAuthentication(String userId) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 

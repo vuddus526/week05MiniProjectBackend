@@ -154,10 +154,10 @@ public class PostService {
         // DB에서 삭제
         postRepository.deleteById(postId);
         // 해당 게시글에 쓰여있는 댓글 삭제하기
-//        List<Comment> commentList = commentRepository.findAllByPostId(postid);
-//        for(Comment comment : commentList) {
-//            commentRepository.deleteById(comment.getId());
-//        }
+        List<Comment> commentList = commentRepository.findAllByPostId(postId);
+        for(Comment comment : commentList) {
+            commentRepository.deleteById(comment.getId());
+        }
 
         return ResponseDto.success(
                 "게시글 삭제 완료"
@@ -192,8 +192,7 @@ public class PostService {
         return ResponseDto.success(
                 PostResponseDto.builder()
                         .id(post.getId())
-                        //.nickName(post.getUser().getNickName())
-//                        .image(post.getImage())
+                        .nickName(post.getUser().getNickName())
                         .content(post.getContent())
                         .exercise(post.getExercise())
                         .time(post.getTime())

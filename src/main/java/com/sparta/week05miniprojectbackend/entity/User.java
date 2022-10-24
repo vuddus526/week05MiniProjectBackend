@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "users")  // table name 은 'user' 가 아닌 'users' 로 변경
 @NoArgsConstructor
-public class User {
+public class User extends Timestamped  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

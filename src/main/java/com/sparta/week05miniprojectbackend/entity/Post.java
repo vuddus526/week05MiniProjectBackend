@@ -22,16 +22,13 @@ public class Post extends Timestamped {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @Column(name = "image", nullable = false)
-    private String image;
-
     @Column(name = "exercise", nullable = false)
     private String exercise;
 
-    @Column(name = "time", nullable = false)
+    @Column(name = "exerciseTime", nullable = false)
     private String time;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "exerciseDate", nullable = false)
     private String date;
 
     @JsonIgnore
@@ -42,7 +39,6 @@ public class Post extends Timestamped {
 
     public Post(PostRequestDto postRequestDto, User user) {
         this.content = postRequestDto.getContent();
-        this.image = postRequestDto.getImage();
         this.exercise = postRequestDto.getExercise();
         this.time = postRequestDto.getTime();
         this.date = postRequestDto.getDate();
@@ -51,7 +47,6 @@ public class Post extends Timestamped {
 
     public void update(PostRequestDto postRequestDto) {
         this.content = postRequestDto.getContent();
-        this.image = postRequestDto.getImage();
         this.exercise = postRequestDto.getExercise();
         this.time = postRequestDto.getTime();
         this.date = postRequestDto.getDate();
