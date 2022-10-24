@@ -37,10 +37,10 @@ jwt:
 cloud:
   aws:
     credentials:
-      accessKey: #acess값
-      secretKey: #secret값
+      accessKey: AKIASBZTU4IV22KYHZXY
+      secretKey: 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
     s3:
-      bucket: #bucket이름
+      bucket: acutecritic
     region:
       static: ap-northeast-2
     stack:

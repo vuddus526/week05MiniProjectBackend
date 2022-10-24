@@ -59,25 +59,25 @@ public class PostService {
     }
 
 //     postId를 이용해서 해당 글의 댓글 찾기
-//    private List<CommentResponseDto> getCommentList(Long postId) {
-//        // postId와 동일한 코멘트 전부 불러오기
-//        List<Comment> commentList = commentRepository.findAllByPostId(postId);
-//        // 불러온 코멘트 객체를 담을 리스트
-//        List<CommentResponseDto> commentListResponseDto = new ArrayList<>();
-//        // 불러온 코멘트 객체로 만들기
-//        for(Comment comment : commentList) {
-//            commentListResponseDto.add(
-//                    CommentResponseDto.builder()
-//                            .id(comment.getId())
-//                            .nickName(comment.getUser().getNickName())
-//                            .comment(comment.getComment())
-//                            .createAt(comment.getCreateAt())
-//                            .build()
-//            );
-//        }
-//
-//        return commentListResponseDto;
-//    }
+    private List<CommentResponseDto> getCommentList(Long postId) {
+        // postId와 동일한 코멘트 전부 불러오기
+        List<Comment> commentList = commentRepository.findAllByPostId(postId);
+        // 불러온 코멘트 객체를 담을 리스트
+        List<CommentResponseDto> commentListResponseDto = new ArrayList<>();
+        // 불러온 코멘트 객체로 만들기
+        for(Comment comment : commentList) {
+            commentListResponseDto.add(
+                    CommentResponseDto.builder()
+                            .id(comment.getId())
+                            .nickName(comment.getUser().getNickName())
+                            .comment(comment.getContent())
+                            .createAt(comment.getCreateAt())
+                            .build()
+            );
+        }
+
+        return commentListResponseDto;
+    }
 
     // 게시글 작성
     public ResponseDto<?> createPost(List<MultipartFile> multipartFile, PostRequestDto postRequestDto, String userId) throws IOException  {
@@ -176,7 +176,7 @@ public class PostService {
         // 받아온 postId로 post 객체 생성
         Post post = getPost(postId);
         // 해당 글의 댓글 찾기
-//        List<CommentResponseDto> commentListResponseDto = getCommentList(postId);
+        List<CommentResponseDto> commentListResponseDto = getCommentList(postId);
 
         // 해당 글의 이미지 찾기
         List<Img> imgList = imgRepository.findAllByPostId(postId);
@@ -198,7 +198,7 @@ public class PostService {
                         .exercise(post.getExercise())
                         .time(post.getTime())
                         .date(post.getDate())
-//                        .commentResponseDtoList(commentListResponseDto)
+                        .commentResponseDtoList(commentListResponseDto)
                         .imgResponseDtoList(imgResponseDtoList)
                         .build()
         );
