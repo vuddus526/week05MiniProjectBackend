@@ -8,6 +8,7 @@ import com.sparta.week05miniprojectbackend.entity.User;
 import com.sparta.week05miniprojectbackend.repository.CommentRepository;
 import com.sparta.week05miniprojectbackend.repository.PostRepository;
 import com.sparta.week05miniprojectbackend.repository.UserRepository;
+import com.sparta.week05miniprojectbackend.Util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,7 @@ public class CommentService {
     private User getUser(String userId) {
         User user = userRepository.findByUserId(userId).orElseThrow(
                 () -> new IllegalArgumentException("해당 아이디를 가진 게시글이 존재하지 않습니다.")
-        );
+                );
         return user;
     }
 
@@ -64,4 +65,13 @@ public class CommentService {
                 "아무글"
         );
     }
+}
+
+    private void checkPostByPostId(Comment comment, Long postId){
+
+        if(!comment.checkPostByPostId(postId)){
+            throw new IllegalArgumentException("해당 게시글의 댓글이 아닙니다.");
+        }
+    }
+
 }
