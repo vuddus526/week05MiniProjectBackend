@@ -19,13 +19,13 @@ public class CommentController {
     public ResponseDto<?> create(@PathVariable("postId") Long postId,
                                  @RequestBody CommentRequestDto dto,
                                  @AuthenticationPrincipal UserDetailsImpl userDetailsImpl){
-        return commentService.create(postId, dto, userDetailsImpl.getUser().getUserId());
+        return commentService.createComment(postId, dto, userDetailsImpl.getUser().getUserId());
     }
 
     @DeleteMapping("/{commentsId}") //댓글삭제
     public ResponseDto<?> delete(
                                  @PathVariable("commentsId") Long commentId,
                                  @AuthenticationPrincipal UserDetailsImpl userDetailsImpl){
-        return commentService.delete(commentId,userDetailsImpl.getUser().getUserId());
+        return commentService.deleteComment(commentId,userDetailsImpl.getUser().getUserId());
     }
 }

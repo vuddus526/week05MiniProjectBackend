@@ -13,8 +13,4 @@ public class CommentRequestDto {
 
     private String content;
 
-    public Comment toEntity(User user, Post post){
-
-        return new Comment(user, post, this.content);
-    }
 }
