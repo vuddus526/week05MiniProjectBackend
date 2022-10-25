@@ -44,8 +44,8 @@ public class SecurityConfig {
                     cors.setAllowedOriginPatterns(List.of("*"));
                     cors.setAllowedMethods(List.of("*"));
                     cors.setAllowedHeaders(List.of("*"));
-                    cors.addExposedHeader("Access_Token");
-                    cors.addExposedHeader("Refresh_Token");
+                    cors.addExposedHeader("AccessToken");
+                    cors.addExposedHeader("RefreshToken");
                     cors.setAllowCredentials(true);
                     return cors;
         });
@@ -65,8 +65,7 @@ public class SecurityConfig {
                 // 게시글
                 .antMatchers(HttpMethod.GET, "/api/posts").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/posts/{postId}").permitAll()
-//                .antMatchers(HttpMethod.POST, "/api/posts").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/posts").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/posts").authenticated()
                 .antMatchers(HttpMethod.PUT, "/api/posts/{postId}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}").authenticated()
 
