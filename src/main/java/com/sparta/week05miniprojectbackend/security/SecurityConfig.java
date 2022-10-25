@@ -73,7 +73,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/api/posts/{postId}/comments").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}/comments/{commentsId}").authenticated()
 
-//                .anyRequest().permitAll()
+                .anyRequest().permitAll()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
