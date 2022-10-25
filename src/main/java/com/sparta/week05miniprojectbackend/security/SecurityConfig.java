@@ -6,6 +6,7 @@ import com.sparta.week05miniprojectbackend.jwt.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -47,7 +48,7 @@ public class SecurityConfig {
                     cors.addExposedHeader("RefreshToken");
                     cors.setAllowCredentials(true);
                     return cors;
-                });
+        });
 
         http.csrf().disable();
 
@@ -55,8 +56,24 @@ public class SecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("/api/auth/**").authenticated()
-                .anyRequest().permitAll()
+//                .antMatchers("/api/auth/**").authenticated()
+                // 로그인
+                .antMatchers(HttpMethod.POST, "/api/user/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/issue/token").permitAll()
+
+                // 게시글
+                .antMatchers(HttpMethod.GET, "/api/posts").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/posts/{postId}").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/posts").authenticated()
+                .antMatchers(HttpMethod.PUT, "/api/posts/{postId}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}").authenticated()
+
+                // 댓글
+                .antMatchers(HttpMethod.POST, "/api/posts/{postId}/comments").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}/comments/{commentsId}").authenticated()
+
+//                .anyRequest().permitAll()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
