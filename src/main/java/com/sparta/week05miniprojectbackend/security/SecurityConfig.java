@@ -43,8 +43,8 @@ public class SecurityConfig {
                     cors.setAllowedOriginPatterns(List.of("*"));
                     cors.setAllowedMethods(List.of("*"));
                     cors.setAllowedHeaders(List.of("*"));
-                    cors.addExposedHeader("AccessToken");
-                    cors.addExposedHeader("RefreshToken");
+                    cors.addExposedHeader("Access_Token");
+                    cors.addExposedHeader("Refresh_Token");
                     cors.setAllowCredentials(true);
                     return cors;
                 });
