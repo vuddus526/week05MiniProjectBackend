@@ -35,7 +35,7 @@ public class PostController {
         return postService.updatePost(id, postRequestDto, userDetailsImpl.getUser().getUserId());
     }
     // 게시글 삭제
-    @DeleteMapping("/posts/{postId")
+    @DeleteMapping("/posts/{postId}")
     public ResponseDto<String> deletePost(@PathVariable("postId") Long id, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
         return postService.deletePost(id, userDetailsImpl.getUser().getUserId());
     }

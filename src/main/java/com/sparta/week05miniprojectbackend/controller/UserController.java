@@ -8,12 +8,16 @@ import com.sparta.week05miniprojectbackend.jwt.util.JwtUtil;
 import com.sparta.week05miniprojectbackend.security.user.UserDetailsImpl;
 import com.sparta.week05miniprojectbackend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.nio.charset.Charset;
 
 @RestController
 @RequestMapping("/api")
@@ -31,8 +35,15 @@ public class UserController {
     }
     // login Dto 를 따로 만들지 UserRequestDto 로 같이 쓸지????????????
     @PostMapping("/user/login")
-    public UserResponseDto login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response){
+    public ResponseEntity login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response){
         return userService.login(loginRequestDto, response);
+    }
+
+    @PostMapping
+    public HttpHeaders setHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+        return headers;
     }
 
     @GetMapping("/issue/token")
@@ -40,6 +51,7 @@ public class UserController {
         response.addHeader(JwtUtil.ACCESS_TOKEN, jwtUtil.createToken(userDetails.getUser().getUserId(), "Access"));
         return new UserResponseDto("Success IssuedToken", HttpStatus.OK.value());
     }
+
 }
 
 

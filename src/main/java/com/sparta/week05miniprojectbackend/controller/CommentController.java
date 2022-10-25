@@ -28,4 +28,6 @@ public class CommentController {
                                  @AuthenticationPrincipal UserDetailsImpl userDetailsImpl){
         return commentService.deleteComment(commentId,userDetailsImpl.getUser().getUserId());
     }
+
+
 }

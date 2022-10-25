@@ -65,14 +65,15 @@ public class SecurityConfig {
                 // 게시글
                 .antMatchers(HttpMethod.GET, "/api/posts").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/posts/{postId}").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/posts").authenticated()
+//                .antMatchers(HttpMethod.POST, "/api/posts").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/posts").permitAll()
                 .antMatchers(HttpMethod.PUT, "/api/posts/{postId}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}").authenticated()
 
                 // 댓글
                 .antMatchers(HttpMethod.POST, "/api/posts/{postId}/comments").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}/comments/{commentsId}").authenticated()
-
+                // 파일 업로드 권한 설정?
 //                .anyRequest().permitAll()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 

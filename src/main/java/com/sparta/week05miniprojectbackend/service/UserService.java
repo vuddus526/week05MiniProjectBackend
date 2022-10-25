@@ -3,6 +3,7 @@ package com.sparta.week05miniprojectbackend.service;
 
 import com.sparta.week05miniprojectbackend.dto.requestDto.LoginRequestDto;
 import com.sparta.week05miniprojectbackend.dto.requestDto.UserRequestDto;
+import com.sparta.week05miniprojectbackend.dto.responseDto.ResponseDto;
 import com.sparta.week05miniprojectbackend.dto.responseDto.UserResponseDto;
 import com.sparta.week05miniprojectbackend.entity.RefreshToken;
 import com.sparta.week05miniprojectbackend.entity.User;
@@ -12,6 +13,7 @@ import com.sparta.week05miniprojectbackend.repository.RefreshTokenRepository;
 import com.sparta.week05miniprojectbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +48,7 @@ public class UserService {
 
     // 로그인
     @Transactional
-    public UserResponseDto login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
+    public ResponseEntity login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
         // userId 로 user 정보 호출
         User user = userRepository.findByUserId(loginRequestDto.getUserId()).orElseThrow(
                 () -> new RuntimeException("Not found Account")
@@ -72,7 +74,17 @@ public class UserService {
 
         setHeader(response, tokenDto);
 
-        return new UserResponseDto("Success Login", HttpStatus.OK.value());
+        return ResponseEntity.ok().body(new UserResponseDto("Success Login", HttpStatus.OK.value()));
+
+//        return new UserResponseDto("Success Login", HttpStatus.OK.value());
+
+//        return ResponseEntity.ok().body(ResponseDto.success(
+//                MemberResponseDto.builder()
+//                        .username(member.getUsername())
+//                        .createdAt(member.getCreatedAt())
+//                        .modifiedAt(member.getModifiedAt())
+//                        .build()
+//        ));
     }
     private void setHeader(HttpServletResponse response, TokenDto tokenDto) {
         response.addHeader(JwtUtil.ACCESS_TOKEN, tokenDto.getAccessToken());
