@@ -1,8 +1,10 @@
 package com.sparta.week05miniprojectbackend.entity;
 
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 
 import javax.persistence.*;
 
