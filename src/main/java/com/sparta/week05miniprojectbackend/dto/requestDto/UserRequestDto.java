@@ -16,6 +16,11 @@ public class UserRequestDto {
     @NotBlank
     private String nickName;
 
+
+    public UserRequestDto(String userId) {
+        this.userId = userId;
+    }
+
     public UserRequestDto(String userId, String password) {
         this.userId = userId;
         this.password = password;

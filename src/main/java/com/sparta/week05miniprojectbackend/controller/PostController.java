@@ -29,6 +29,12 @@ public class PostController {
         return postService.createPost(multipartFile, postRequestDto, userDetailsImpl.getUser().getUserId());
     }
 
+    @PostMapping("/postsa")
+    public ResponseDto<?> createPosta(@RequestBody PostRequestDto postRequestDto,
+                                     @AuthenticationPrincipal UserDetailsImpl userDetailsImpl){
+        return postService.createPosta(postRequestDto, userDetailsImpl.getUser().getUserId());
+    }
+
     // 게시글 수정
     @PutMapping("/posts/{postId}")
     public ResponseDto<?> updatePost(@PathVariable("postId") Long id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {

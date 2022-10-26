@@ -1,6 +1,7 @@
 package com.sparta.week05miniprojectbackend.service;
 
 
+import com.sparta.week05miniprojectbackend.dto.requestDto.IdCheckRequestDto;
 import com.sparta.week05miniprojectbackend.dto.requestDto.LoginRequestDto;
 import com.sparta.week05miniprojectbackend.dto.requestDto.UserRequestDto;
 import com.sparta.week05miniprojectbackend.dto.responseDto.ResponseDto;
@@ -48,6 +49,19 @@ public class UserService {
         );
 //        return new UserResponseDto("Success signup", HttpStatus.OK.value());
     }
+
+    // ID 중복확인
+
+    public ResponseDto<?> idCheck(IdCheckRequestDto idCheckRequestDto){
+        String result = "";
+        if(userRepository.findByUserId(idCheckRequestDto.getUserId()).isPresent()) {
+            result = "ID가 이미 존재합니다.";
+        }else{
+            result = "사용가능한 ID 입니다.";
+            }
+        return ResponseDto.success(result);
+        }
+
 
     // 로그인
     @Transactional

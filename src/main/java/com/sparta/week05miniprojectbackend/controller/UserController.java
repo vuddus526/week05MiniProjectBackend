@@ -1,6 +1,7 @@
 package com.sparta.week05miniprojectbackend.controller;
 
 
+import com.sparta.week05miniprojectbackend.dto.requestDto.IdCheckRequestDto;
 import com.sparta.week05miniprojectbackend.dto.requestDto.LoginRequestDto;
 import com.sparta.week05miniprojectbackend.dto.requestDto.UserRequestDto;
 import com.sparta.week05miniprojectbackend.dto.responseDto.ResponseDto;
@@ -34,6 +35,11 @@ public class UserController {
     @PostMapping("/user/signup")
     public ResponseDto<?> signup(@RequestBody @Valid UserRequestDto userRequestDto){
         return userService.signup(userRequestDto);
+    }
+
+    @PostMapping("/user/idCheck")
+    public ResponseDto<?> idCheck(@RequestBody @Valid IdCheckRequestDto idCheckRequestDto){
+        return userService.idCheck(idCheckRequestDto);
     }
 
     // login Dto 를 따로 만들지 UserRequestDto 로 같이 쓸지????????????
