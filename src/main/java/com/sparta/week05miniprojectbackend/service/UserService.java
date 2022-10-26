@@ -32,7 +32,7 @@ public class UserService {
 
 
     // 회원가입
-    public UserResponseDto signup(UserRequestDto userRequestDto){
+    public ResponseDto<?> signup(UserRequestDto userRequestDto){
         // userid 중복 검사
         // Exception 값 컨펌!
         if(userRepository.findByUserId(userRequestDto.getUserId()).isPresent()){
@@ -43,7 +43,10 @@ public class UserService {
         User user = new User(userRequestDto);
 
         userRepository.save(user);
-        return new UserResponseDto("Success signup", HttpStatus.OK.value());
+        return ResponseDto.success(
+                "회원가입 성공"
+        );
+//        return new UserResponseDto("Success signup", HttpStatus.OK.value());
     }
 
     // 로그인
@@ -73,15 +76,21 @@ public class UserService {
         }
 
         setHeader(response, tokenDto);
-//        System.out.println("-----------------------------" + response);
-//        return ResponseEntity.created()
-//                .body(new UserResponseDto("Success Login", HttpStatus.OK.value()));
 
+//        return ResponseEntity.ok().body(ResponseDto.success(
+//                new UserResponseDto("Success Login", HttpStatus.OK.value())
+//        ));
+//        return ResponseDto.success(
+//                new UserResponseDto("Success Login", HttpStatus.OK.value())
+//        );
+         return ResponseDto.success(
+                 "로그인 성공"
+         );
 //        return new UserResponseDto("Success Login", HttpStatus.OK.value());
 
-        return ResponseDto.success(
-                "로그인 성공"
-        );
+//        return ResponseDto.success(
+//                "로그인 성공"
+//        );
 //        return ResponseEntity.ok().body(ResponseDto.success(
 //                MemberResponseDto.builder()
 //                        .username(member.getUsername())

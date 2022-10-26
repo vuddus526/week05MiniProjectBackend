@@ -39,18 +39,19 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception {
 
         // CORS
-        http.cors().configurationSource(request -> {
-                    var cors = new CorsConfiguration();
-                    cors.setAllowedOriginPatterns(List.of("*"));
-                    cors.setAllowedMethods(List.of("*"));
-                    cors.setAllowedHeaders(List.of("*"));
-//                    cors.addExposedHeader("Access_Token");
-//                    cors.addExposedHeader("Refresh_Token");
-                    cors.addExposedHeader("*");
-//            cors.exposedHeaders("*");
-                    cors.setAllowCredentials(true);
-                    return cors;
-        });
+//        http.cors().configurationSource(request -> {
+//                    var cors = new CorsConfiguration();
+//                    cors.setAllowedOriginPatterns(List.of("*"));
+//                    cors.setAllowedMethods(List.of("*"));
+//                    cors.setAllowedHeaders(List.of("*"));
+////                    cors.addExposedHeader("Access_Token");
+////                    cors.addExposedHeader("Refresh_Token");
+//                    cors.addExposedHeader("*");
+////            cors.exposedHeaders("*");
+//                    cors.setAllowCredentials(true);
+////                    cors.setMaxAge(3000L);
+//                    return cors;
+//        });
 
         http.csrf().disable();
 

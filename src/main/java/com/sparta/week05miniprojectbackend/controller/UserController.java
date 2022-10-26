@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequestMapping("/api")
@@ -31,14 +32,22 @@ public class UserController {
     // 입력값 @RequestBody 로 받을 것인지 다시 한번 확인!
     // @Valid 값 컨펌받기!
     @PostMapping("/user/signup")
-    public UserResponseDto signup(@RequestBody @Valid UserRequestDto userRequestDto){
+    public ResponseDto<?> signup(@RequestBody @Valid UserRequestDto userRequestDto){
         return userService.signup(userRequestDto);
     }
+
     // login Dto 를 따로 만들지 UserRequestDto 로 같이 쓸지????????????
 //    @PostMapping("/user/login")
-//    public UserResponseDto login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response){
+//    public ResponseEntity<ResponseDto<UserResponseDto>> login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response){
 //        return userService.login(loginRequestDto, response);
 //    }
+
+//    @PostMapping("/user/login")
+//    public ResponseDto<?> login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response){
+////        System.out.println(userService.login(loginRequestDto, response));
+//        return userService.login(loginRequestDto, response);
+//    }
+
 
     @PostMapping("/user/login")
     public ResponseDto<?> login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response){
@@ -49,7 +58,7 @@ public class UserController {
 //    @PostMapping
 //    public HttpHeaders setHeaders() {
 //        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+//        headers.setContentType(new MediaType("application", "json", StandardCharsets.UTF_8));
 //        return headers;
 //    }
 
