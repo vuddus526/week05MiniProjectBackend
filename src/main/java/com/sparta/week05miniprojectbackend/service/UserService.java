@@ -48,7 +48,7 @@ public class UserService {
 
     // 로그인
     @Transactional
-    public ResponseEntity login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
+    public ResponseDto<?> login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
         // userId 로 user 정보 호출
         User user = userRepository.findByUserId(loginRequestDto.getUserId()).orElseThrow(
                 () -> new RuntimeException("Not found Account")
@@ -73,11 +73,15 @@ public class UserService {
         }
 
         setHeader(response, tokenDto);
-
-        return ResponseEntity.ok().body(new UserResponseDto("Success Login", HttpStatus.OK.value()));
+//        System.out.println("-----------------------------" + response);
+//        return ResponseEntity.created()
+//                .body(new UserResponseDto("Success Login", HttpStatus.OK.value()));
 
 //        return new UserResponseDto("Success Login", HttpStatus.OK.value());
 
+        return ResponseDto.success(
+                "로그인 성공"
+        );
 //        return ResponseEntity.ok().body(ResponseDto.success(
 //                MemberResponseDto.builder()
 //                        .username(member.getUsername())

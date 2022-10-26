@@ -44,8 +44,10 @@ public class SecurityConfig {
                     cors.setAllowedOriginPatterns(List.of("*"));
                     cors.setAllowedMethods(List.of("*"));
                     cors.setAllowedHeaders(List.of("*"));
-                    cors.addExposedHeader("Access_Token");
-                    cors.addExposedHeader("Refresh_Token");
+//                    cors.addExposedHeader("Access_Token");
+//                    cors.addExposedHeader("Refresh_Token");
+                    cors.addExposedHeader("*");
+//            cors.exposedHeaders("*");
                     cors.setAllowCredentials(true);
                     return cors;
         });
@@ -57,23 +59,23 @@ public class SecurityConfig {
 
         http.authorizeRequests()
 //                .antMatchers("/api/auth/**").authenticated()
-                // 로그인
-                .antMatchers(HttpMethod.POST, "/api/user/signup").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/user/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/issue/token").permitAll()
-
-                // 게시글
-                .antMatchers(HttpMethod.GET, "/api/posts").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/posts/{postId}").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/posts").authenticated()
-                .antMatchers(HttpMethod.PUT, "/api/posts/{postId}").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}").authenticated()
-
-                // 댓글
-                .antMatchers(HttpMethod.POST, "/api/posts/{postId}/comments").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}/comments/{commentsId}").authenticated()
+//                // 로그인
+//                .antMatchers(HttpMethod.POST, "/api/user/signup").permitAll()
+//                .antMatchers(HttpMethod.POST, "/api/user/login").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/issue/token").permitAll()
+//
+//                // 게시글
+//                .antMatchers(HttpMethod.GET, "/api/posts").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/posts/{postId}").permitAll()
+//                .antMatchers(HttpMethod.POST, "/api/posts").authenticated()
+//                .antMatchers(HttpMethod.PUT, "/api/posts/{postId}").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}").authenticated()
+//
+//                // 댓글
+//                .antMatchers(HttpMethod.POST, "/api/posts/{postId}/comments").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "/api/posts/{postId}/comments/{commentsId}").authenticated()
                 // 파일 업로드 권한 설정?
-//                .anyRequest().permitAll()
+                .anyRequest().permitAll()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

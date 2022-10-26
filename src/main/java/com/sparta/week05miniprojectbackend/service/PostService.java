@@ -82,7 +82,7 @@ public class PostService {
     }
 
     // 게시글 작성
-    public ResponseDto<String> createPost(List<MultipartFile> multipartFile, PostRequestDto postRequestDto, String userId) throws IOException  {
+    public ResponseDto<?> createPost(List<MultipartFile> multipartFile, PostRequestDto postRequestDto, String userId) throws IOException  {
         // 받아온 userId로 user 객체 생성
         User user = getUser(userId);
         // JSON으로 넘어온 데이터 + User객체 Post객체로 만들기
@@ -123,7 +123,7 @@ public class PostService {
 
     // 게시글 수정
     @Transactional
-    public ResponseDto<String> updatePost(Long postId, PostRequestDto postRequestDto, String userId) {
+    public ResponseDto<?> updatePost(Long postId, PostRequestDto postRequestDto, String userId) {
         // 받아온 userId로 user 객체 생성
         User user = getUser(userId);
         // 받아온 postId로 post 객체 생성
@@ -144,7 +144,7 @@ public class PostService {
 
     // 게시글 삭제
     @Transactional
-    public ResponseDto<String> deletePost(Long postId, String userId) {
+    public ResponseDto<?> deletePost(Long postId, String userId) {
         // 받아온 userId로 user 객체 생성
         User user = getUser(userId);
         // 받아온 postId로 post 객체 생성
@@ -167,14 +167,14 @@ public class PostService {
     }
 
     // 게시글 전체조회
-    public ResponseDto<List<Post>> getAllPost() {
+    public ResponseDto<?> getAllPost() {
         return ResponseDto.success(
                 postRepository.findAllByOrderByModifiedAtDesc()
         );
     }
 
     // 게시글 상세조회
-    public ResponseDto<PostResponseDto> getDetailPost(Long postId) {
+    public ResponseDto<?> getDetailPost(Long postId) {
         // 받아온 postId로 post 객체 생성
         Post post = getPost(postId);
         // 해당 글의 댓글 찾기

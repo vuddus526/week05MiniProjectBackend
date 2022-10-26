@@ -3,6 +3,7 @@ package com.sparta.week05miniprojectbackend.controller;
 
 import com.sparta.week05miniprojectbackend.dto.requestDto.LoginRequestDto;
 import com.sparta.week05miniprojectbackend.dto.requestDto.UserRequestDto;
+import com.sparta.week05miniprojectbackend.dto.responseDto.ResponseDto;
 import com.sparta.week05miniprojectbackend.dto.responseDto.UserResponseDto;
 import com.sparta.week05miniprojectbackend.jwt.util.JwtUtil;
 import com.sparta.week05miniprojectbackend.security.user.UserDetailsImpl;
@@ -34,24 +35,29 @@ public class UserController {
         return userService.signup(userRequestDto);
     }
     // login Dto 를 따로 만들지 UserRequestDto 로 같이 쓸지????????????
+//    @PostMapping("/user/login")
+//    public UserResponseDto login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response){
+//        return userService.login(loginRequestDto, response);
+//    }
+
     @PostMapping("/user/login")
-    public ResponseEntity login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response){
+    public ResponseDto<?> login(@RequestBody @Valid LoginRequestDto loginRequestDto, HttpServletResponse response){
+//        System.out.println(userService.login(loginRequestDto, response));
         return userService.login(loginRequestDto, response);
     }
 
-    @PostMapping
-    public HttpHeaders setHeaders() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-        return headers;
-    }
+//    @PostMapping
+//    public HttpHeaders setHeaders() {
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+//        return headers;
+//    }
 
-    @GetMapping("/issue/token")
-    public UserResponseDto issuedToken(@AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response){
-        response.addHeader(JwtUtil.ACCESS_TOKEN, jwtUtil.createToken(userDetails.getUser().getUserId(), "Access"));
-        return new UserResponseDto("Success IssuedToken", HttpStatus.OK.value());
-    }
-
+//    @GetMapping("/issue/token")
+//    public UserResponseDto issuedToken(@AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletResponse response){
+//        response.addHeader(JwtUtil.ACCESS_TOKEN, jwtUtil.createToken(userDetails.getUser().getUserId(), "Access"));
+//        return new UserResponseDto("Success IssuedToken", HttpStatus.OK.value());
+//    }
 }
 
 

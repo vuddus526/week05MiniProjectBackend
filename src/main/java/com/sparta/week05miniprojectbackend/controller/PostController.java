@@ -23,7 +23,7 @@ public class PostController {
 
     // 게시글 작성
     @PostMapping("/posts")
-    public ResponseDto<String> createPost(@RequestPart(required = false,value = "file") List<MultipartFile> multipartFile,
+    public ResponseDto<?> createPost(@RequestPart(required = false,value = "file") List<MultipartFile> multipartFile,
                                      @RequestPart(value = "postRequestDto") PostRequestDto postRequestDto,
                                      @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) throws IOException {
         return postService.createPost(multipartFile, postRequestDto, userDetailsImpl.getUser().getUserId());
@@ -31,24 +31,24 @@ public class PostController {
 
     // 게시글 수정
     @PutMapping("/posts/{postId}")
-    public ResponseDto<String> updatePost(@PathVariable("postId") Long id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
+    public ResponseDto<?> updatePost(@PathVariable("postId") Long id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
         return postService.updatePost(id, postRequestDto, userDetailsImpl.getUser().getUserId());
     }
     // 게시글 삭제
     @DeleteMapping("/posts/{postId}")
-    public ResponseDto<String> deletePost(@PathVariable("postId") Long id, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
+    public ResponseDto<?> deletePost(@PathVariable("postId") Long id, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
         return postService.deletePost(id, userDetailsImpl.getUser().getUserId());
     }
 
     // 게시글 전체조회
     @GetMapping("/posts")
-    public ResponseDto<List<Post>> getAllPost() {
+    public ResponseDto<?> getAllPost() {
         return postService.getAllPost();
     }
 
     // 게시글 상세조회
     @GetMapping("/posts/{postId}")
-    public ResponseDto<PostResponseDto> getDetailPost(@PathVariable("postId") Long id) {
+    public ResponseDto<?> getDetailPost(@PathVariable("postId") Long id) {
         return postService.getDetailPost(id);
     }
 }
