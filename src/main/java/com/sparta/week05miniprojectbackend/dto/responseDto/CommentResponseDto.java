@@ -18,7 +18,7 @@ public class CommentResponseDto {
     private String nickName;
     private LocalDateTime createAt;
 
-    //Post타입에서 DTO타입으로 변환
+    // Post타입에서 DTO타입으로 변환
     public CommentResponseDto(Comment comment){
 
         this.id = comment.getId();

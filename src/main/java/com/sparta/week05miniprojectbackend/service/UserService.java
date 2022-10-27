@@ -31,7 +31,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
 
-
     // 회원가입
     public ResponseDto<?> signup(UserRequestDto userRequestDto){
         // userid 중복 검사
@@ -47,11 +46,9 @@ public class UserService {
         return ResponseDto.success(
                 "회원가입 성공"
         );
-//        return new UserResponseDto("Success signup", HttpStatus.OK.value());
     }
 
     // ID 중복확인
-
     public ResponseDto<?> idCheck(IdCheckRequestDto idCheckRequestDto){
         String result = "";
         if(userRepository.findByUserId(idCheckRequestDto.getUserId()).isPresent()) {
@@ -61,7 +58,6 @@ public class UserService {
             }
         return ResponseDto.success(result);
         }
-
 
     // 로그인
     @Transactional
@@ -80,8 +76,6 @@ public class UserService {
         // userId 값에 해당하는 refreshToken 을 DB에서 가져옴
         Optional<RefreshToken> refreshToken = refreshTokenRepository.findByAccountUserId(loginRequestDto.getUserId());
 
-        // refreshToken 이 존재 -> Dto 로 받은 것을 repository 에 새로 저장
-        // refreshToken 이 없음 ->
         if (refreshToken.isPresent()) {
             refreshTokenRepository.save(refreshToken.get().updateToken(tokenDto.getRefreshToken()));
         } else {
@@ -91,27 +85,9 @@ public class UserService {
 
         setHeader(response, tokenDto);
 
-//        return ResponseEntity.ok().body(ResponseDto.success(
-//                new UserResponseDto("Success Login", HttpStatus.OK.value())
-//        ));
-//        return ResponseDto.success(
-//                new UserResponseDto("Success Login", HttpStatus.OK.value())
-//        );
          return ResponseDto.success(
                  "로그인 성공"
          );
-//        return new UserResponseDto("Success Login", HttpStatus.OK.value());
-
-//        return ResponseDto.success(
-//                "로그인 성공"
-//        );
-//        return ResponseEntity.ok().body(ResponseDto.success(
-//                MemberResponseDto.builder()
-//                        .username(member.getUsername())
-//                        .createdAt(member.getCreatedAt())
-//                        .modifiedAt(member.getModifiedAt())
-//                        .build()
-//        ));
     }
     private void setHeader(HttpServletResponse response, TokenDto tokenDto) {
         response.addHeader(JwtUtil.ACCESS_TOKEN, tokenDto.getAccessToken());

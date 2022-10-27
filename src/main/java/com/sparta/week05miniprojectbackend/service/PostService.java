@@ -80,17 +80,16 @@ public class PostService {
 
         return commentListResponseDto;
     }
-    public ResponseDto<?>createPosta(PostRequestDto postRequestDto, String userId){
-        // 받아온 userId로 user 객체 생성
-        User user = getUser(userId);
-        // JSON으로 넘어온 데이터 + User객체 Post객체로 만들기
-        Post post = new Post(postRequestDto, user);
-        // DB에 저장
-        postRepository.save(post);
-        return ResponseDto.success(
-                "게시글 작성 완료"
-        );
-    }
+
+//    // 게시글 Json 만 작성
+//    public ResponseDto<?>createPosta(PostRequestDto postRequestDto, String userId){
+//        User user = getUser(userId);
+//        Post post = new Post(postRequestDto, user);
+//        postRepository.save(post);
+//        return ResponseDto.success(
+//                "게시글 작성 완료"
+//        );
+//    }
 
 
     // 게시글 작성

@@ -13,6 +13,5 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedMethods("*")
                 .exposedHeaders("*")
                 .maxAge(3000);
-        System.out.println("코스필터 작동~~~~~~~~~~~~~~~~");
     }
 }
